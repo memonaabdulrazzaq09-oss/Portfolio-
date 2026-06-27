@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Memona Abdul Razzaq | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:#0a0a0f; --surface:#12121c; --card:#1a1a2e;
+    --purple:#7c3aed; --violet:#a855f7; --neon:#e879f9;
+    --neon-cyan:#22d3ee; --text:#e2e8f0; --muted:#94a3b8;
+    --border:rgba(168,85,247,0.18);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+  /* ── SPARKLES CANVAS ── */
+  #sparkles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color 0.2s}
+  .nav-links a:hover{color:var(--neon)}
+
+  #home{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 4rem;overflow:hidden}
+  #home::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.2) 0%,transparent 70%);pointer-events:none}
+  #home::after{content:'';position:absolute;bottom:-80px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,121,249,0.12) 0%,transparent 70%);pointer-events:none}
+
+  .hero-eyebrow{display:inline-block;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--neon);margin-bottom:1.2rem}
+  .hero-name{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,6vw,5.5rem);font-weight:800;line-height:1.1;background:linear-gradient(135deg,#fff 30%,var(--violet) 70%,var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.6rem}
+  .hero-location{font-size:0.9rem;color:var(--muted);margin-bottom:0.8rem}
+  .hero-location span{color:var(--neon-cyan)}
+  .hero-title{font-size:clamp(1rem,3vw,1.4rem);color:var(--muted);font-weight:400;margin-bottom:2rem}
+  .hero-title span{color:var(--neon-cyan);font-weight:600}
+  .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+  .btn-primary{background:linear-gradient(135deg,var(--purple),var(--neon));color:#fff;padding:0.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:opacity 0.2s,transform 0.2s;box-shadow:0 0 20px rgba(168,85,247,0.4)}
+  .btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
+  .btn-hire{background:linear-gradient(135deg,var(--neon-cyan),var(--violet));color:#fff;padding:0.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:0.95rem;transition:opacity 0.2s,transform 0.2s;animation:pulse 2.5s infinite}
+  .btn-hire:hover{opacity:0.88;transform:translateY(-2px)}
+  @keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(34,211,238,0.35)}50%{box-shadow:0 0 38px rgba(34,211,238,0.65)}}
+  .btn-outline{border:1.5px solid var(--violet);color:var(--violet);padding:0.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:background 0.2s,color 0.2s}
+  .btn-outline:hover{background:var(--violet);color:#fff}
+
+  section{position:relative;z-index:1;padding:6rem 1.5rem}
+  .container{max-width:1000px;margin:0 auto}
+  .section-label{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon);margin-bottom:0.5rem}
+  .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;margin-bottom:3rem;line-height:1.1}
+  .section-title span{background:linear-gradient(90deg,var(--violet),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+  #about{background:rgba(18,18,28,0.85);backdrop-filter:blur(10px)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .about-text p{color:var(--muted);margin-bottom:1rem;font-size:1rem}
+  .about-text p strong{color:var(--text)}
+  .skills-chips{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem}
+  .chip{background:var(--card);border:1px solid var(--border);color:var(--violet);padding:0.35rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:500}
+  .about-stats{display:flex;flex-direction:column;gap:1.5rem}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--neon))}
+  .stat-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .stat-label{color:var(--muted);font-size:0.85rem}
+
+  #projects{background:rgba(10,10,15,0.7);backdrop-filter:blur(10px)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem;transition:border-color 0.3s,transform 0.3s;position:relative;overflow:hidden}
+  .project-card:hover{border-color:var(--violet);transform:translateY(-5px)}
+  .project-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity 0.3s}
+  .project-card:hover::after{opacity:1}
+  .project-tag{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:0.8rem;display:inline-block}
+  .project-name{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.6rem;color:var(--text)}
+  .project-desc{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.6}
+  .project-link{color:var(--violet);text-decoration:none;font-size:0.85rem;font-weight:600;display:inline-flex;align-items:center;gap:0.3rem;transition:color 0.2s}
+  .project-link:hover{color:var(--neon)}
+  .project-link::after{content:' →'}
+
+  #contact{background:rgba(18,18,28,0.85);backdrop-filter:blur(10px)}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden}
+  .contact-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,121,249,0.12) 0%,transparent 70%)}
+  .contact-card > p{color:var(--muted);max-width:480px;margin:1rem auto 1rem;font-size:1rem}
+  .contact-info{font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem}
+  .contact-info span{color:var(--neon-cyan)}
+  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+  .contact-link{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:0.65rem 1.4rem;border-radius:12px;text-decoration:none;font-size:0.9rem;font-weight:500;transition:border-color 0.2s,color 0.2s}
+  .contact-link:hover{border-color:var(--violet);color:var(--violet)}
+
+  .hire-banner{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(232,121,249,0.1));border:1px solid rgba(168,85,247,0.3);border-radius:20px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+  .hire-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--neon-cyan),var(--neon))}
+  .hire-banner h3{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:0.6rem;background:linear-gradient(90deg,var(--neon-cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hire-banner p{color:var(--muted);margin-bottom:1.5rem}
+  .hire-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-linkedin{background:linear-gradient(135deg,#0077b5,var(--violet));color:#fff;padding:0.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:0.95rem;transition:opacity 0.2s,transform 0.2s}
+  .btn-linkedin:hover{opacity:0.88;transform:translateY(-2px)}
+
+  footer{position:relative;z-index:1;text-align:center;padding:2rem 1rem;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--border)}
+  footer span{background:linear-gradient(90deg,var(--violet),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600}
+
+  @media(max-width:680px){
+    nav{padding:1rem}
+    .nav-links{gap:1.2rem}
+    .nav-links a{font-size:0.8rem}
+    .about-grid{grid-template-columns:1fr}
+    .about-stats{flex-direction:row;flex-wrap:wrap}
+    .stat-card{flex:1;min-width:130px}
+  }
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<canvas id="sparkles"></canvas>
+
+<nav>
+  <div class="nav-logo">MAR.</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div>
+    <p class="hero-eyebrow">✦ Web Developer &amp; Designer</p>
+    <h1 class="hero-name">Memona<br>Abdul Razzaq</h1>
+    <p class="hero-location">📍 <span>Mirpur Khas, Pakistan</span></p>
+    <p class="hero-title">Building <span>clean code</span> &amp; <span>creative design</span> — one project at a time.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <p class="section-label reveal">About Me</p>
+    <h2 class="section-title reveal">Who I <span>Am</span></h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Hi! I'm <strong>Memona Abdul Razzaq</strong> — a passionate web developer and graphic designer based in <strong>Mirpur Khas, Pakistan</strong>.</p>
+        <p>I love creating digital experiences that are both <strong>functional and beautiful</strong>. From writing clean HTML/CSS to designing eye-catching graphics, I bring ideas to life with code and creativity.</p>
+        <p>Currently learning and growing through <strong>As-Sa'adah Online Academy</strong> and building real-world projects every day.</p>
+        <div class="skills-chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Python</span>
+          <span class="chip">GitHub</span>
+          <span class="chip">Canva</span>
+          <span class="chip">Graphic Design</span>
+          <span class="chip">Netlify</span>
+        </div>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Month of Learning at As-Sa'adah</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Passion &amp; Dedication</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">My Work</p>
+    <h2 class="section-title reveal">Featured <span>Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <span class="project-tag">Web App</span>
+        <div class="project-name">Smart Calculator</div>
+        <p class="project-desc">A premium calculator with cinematic dark blue theme, glassmorphism design, neon display and smooth animations.</p>
+        <a href="https://memonaabdulrazzaq09-oss.github.io/Smart-calculator-/" class="project-link" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-tag">Islamic App</span>
+        <div class="project-name">Tasbeeh Counter</div>
+        <p class="project-desc">A beautiful Islamic Tasbeeh counter with SVG ring progress, built to help track daily dhikr digitally with ease.</p>
+        <a href="https://memonaabdulrazzaq09-oss.github.io/Tasbeeh-counter/" class="project-link" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-tag">Web App</span>
+        <div class="project-name">TaskFlow — To Do List</div>
+        <p class="project-desc">A clean and modern task management app to organize daily goals and boost productivity. Built with Lovable.</p>
+        <a href="https://taskflow-zen-949.lovable.app/" class="project-link" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-tag">Python Project</span>
+        <div class="project-name">Juice Recipe App</div>
+        <p class="project-desc">A creative Python project that suggests delicious juice recipes based on available ingredients. Fun and healthy!</p>
+        <a href="https://memonaabdulrazzaq09-oss.github.io/Juice-recipe-/" class="project-link" target="_blank">Live Demo</a>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-tag">Game</span>
+        <div class="project-name">Rock Paper Scissors</div>
+        <p class="project-desc">A fun interactive Rock Paper Scissors game with clean logic and user-friendly interface. Play against the computer!</p>
+        <a href="https://memonaabdulrazzaq09-oss.github.io/rps-game./" class="project-link" target="_blank">Live Demo</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Let's <span>Connect</span></h2>
+    <div class="contact-card reveal">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;">Say Hello!</h3>
+      <p>Whether you have a project in mind, want to collaborate, or just want to say hello — my inbox is always open!</p>
+      <p class="contact-info">📍 <span>Mirpur Khas, Pakistan</span> &nbsp;|&nbsp; 📧 <span>memonaabdulrazzaq09@gmail.com</span></p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/memona-abdul-razzaq-990462413" class="contact-link" target="_blank">💼 LinkedIn</a>
+        <a href="https://github.com/memonaabdulrazzaq09-oss" class="contact-link" target="_blank">🐙 GitHub</a>
+        <a href="mailto:memonaabdulrazzaq09@gmail.com" class="contact-link">📧 memonaabdulrazzaq09@gmail.com</a>
+      </div>
+
+      <div class="hire-banner">
+        <h3>Available for Hire! 🚀</h3>
+        <p>Looking for a dedicated web developer &amp; designer? Let's build something amazing together.</p>
+        <div class="hire-btns">
+          <a href="mailto:memonaabdulrazzaq09@gmail.com?subject=Hire%20Inquiry%20-%20Portfolio" class="btn-hire">📧 Hire via Email</a>
+          <a href="https://www.linkedin.com/in/memona-abdul-razzaq-990462413" class="btn-linkedin" target="_blank">💼 Hire via LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; Built by <span>Memona Abdul Razzaq</span> · Mirpur Khas, Pakistan</p>
+</footer>
+
+<script>
+// ── SPARKLES ──
+const canvas = document.getElementById('sparkles');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+function randomColor() {
+  const colors = [
+    'rgba(168,85,247,', // violet
+    'rgba(232,121,249,', // neon pink
+    'rgba(34,211,238,',  // cyan
+    'rgba(255,255,255,', // white
+    'rgba(200,160,255,', // light purple
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+class Star {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.size = Math.random() * 2.5 + 0.5;
+    this.color = randomColor();
+    this.alpha = Math.random();
+    this.dalpha = (Math.random() * 0.015 + 0.005) * (Math.random() > 0.5 ? 1 : -1);
+    this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+    this.angle = Math.random() * Math.PI * 2;
+    this.drift = (Math.random() - 0.5) * 0.15;
+    this.isSpark = Math.random() > 0.85;
+    this.sparkAngle = Math.random() * Math.PI * 2;
+  }
+  update() {
+    this.alpha += this.dalpha;
+    if (this.alpha <= 0 || this.alpha >= 1) this.dalpha *= -1;
+    this.alpha = Math.max(0, Math.min(1, this.alpha));
+    this.x += this.drift;
+    if (this.x < 0 || this.x > W) this.reset();
+  }
+  draw() {
+    if (this.isSpark) {
+      // Draw 4-point sparkle
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.sparkAngle);
+      ctx.globalAlpha = this.alpha;
+      const s = this.size * 2.5;
+      ctx.beginPath();
+      for (let i = 0; i < 4; i++) {
+        const angle = (i / 4) * Math.PI * 2;
+        const r1 = s, r2 = s * 0.25;
+        ctx.lineTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
+        ctx.lineTo(Math.cos(angle + Math.PI / 4) * r2, Math.sin(angle + Math.PI / 4) * r2);
+      }
+      ctx.closePath();
+      ctx.fillStyle = this.color + this.alpha + ')';
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color + '1)';
+      ctx.fill();
+      ctx.restore();
+    } else {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + this.alpha + ')';
+      ctx.shadowBlur = this.size * 4;
+      ctx.shadowColor = this.color + '0.8)';
+      ctx.fill();
+    }
+  }
+}
+
+// Create stars
+for (let i = 0; i < 180; i++) stars.push(new Star());
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  stars.forEach(s => { s.update(); s.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
